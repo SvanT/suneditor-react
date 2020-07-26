@@ -19446,7 +19446,9 @@ const _Context = function (element, cons, options) {
             this.history.reset(true);
             this._resourcesStateChange();
 
-            if (typeof functions.onload === 'function') return functions.onload(this, reload);
+            _w.setTimeout(function () {
+              if (typeof functions.onload === 'function') functions.onload(core, reload);
+            });
         },
 
         /**
@@ -22281,7 +22283,7 @@ var SunEditor_SunEditor = /*#__PURE__*/function (_Component) {
 
       if (setContents) {
         this.editor.setContents(setContents);
-        this.editor.core.focusEdge();
+        if (autoFocus === true) this.editor.core.focusEdge();
       }
 
       if (setDefaultStyle) this.editor.setDefaultStyle(setDefaultStyle);
